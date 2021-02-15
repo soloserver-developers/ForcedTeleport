@@ -1,0 +1,5 @@
+name: ForcedTeleport
+version: @version@
+main: page.nafuchoco.forcedteleport.ForcedTeleport
+api-version: 1.16
+depend: [ SoloServerCore ]
