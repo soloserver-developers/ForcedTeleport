@@ -40,8 +40,8 @@ import java.util.Date;
 import java.util.logging.Level;
 
 public final class ForcedTeleport extends JavaPlugin implements Listener {
-    private static final Date START_DATE = new Date(1613142000); // 2020/2/13 0:00
-    private static final Date END_DATE = new Date(1613394000); // 2020/2/15 22:00
+    private static final Date START_DATE = new Date(1613142000); // 2021/2/13 0:00
+    private static final Date END_DATE = new Date(1613401140); // 2021/2/15 22:00
 
     private SoloServerApi soloServerApi;
 
@@ -61,7 +61,8 @@ public final class ForcedTeleport extends JavaPlugin implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerJoinEvent(PlayerJoinEvent event) {
         Date firstPlayed = new Date(event.getPlayer().getFirstPlayed());
-        if (firstPlayed.after(START_DATE) && firstPlayed.before(END_DATE)) {
+        Date lastPlayed = new Date(event.getPlayer().getLastPlayed());
+        if (firstPlayed.after(START_DATE) && firstPlayed.before(END_DATE) && lastPlayed.before(END_DATE)) {
             try {
                 Location location = soloServerApi.getPlayerSpawn(event.getPlayer());
                 event.getPlayer().teleport(location);
